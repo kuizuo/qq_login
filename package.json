@@ -1,0 +1,44 @@
+{
+  "name": "qq-login",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@7.11.0",
+  "description": "qq 登录, 支持密码登录 + 扫码登录",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kuizuo/qq-qr-login.git"
+  },
+  "scripts": {
+    "build": "nuxi build",
+    "dev": "nuxi dev",
+    "start": "node .output/server/index.mjs",
+    "lint": "eslint .",
+    "postinstall": "nuxi prepare",
+    "generate": "nuxi generate"
+  },
+  "dependencies": {
+    "async": "^3.2.4",
+    "axios": "^1.4.0",
+    "qrcode": "^1.5.3",
+    "qs": "^6.11.2"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.39.6",
+    "@huntersofbook/naive-ui-nuxt": "^1.0.0",
+    "@iconify-json/carbon": "^1.1.18",
+    "@iconify-json/twemoji": "^1.1.11",
+    "@nuxtjs/color-mode": "^3.3.0",
+    "@pinia/nuxt": "^0.4.11",
+    "@types/crypto-js": "^4.1.1",
+    "@types/qrcode": "^1.5.0",
+    "@unocss/nuxt": "^0.53.4",
+    "@vueuse/nuxt": "^10.2.1",
+    "crypto-js": "^4.1.1",
+    "eslint": "^8.43.0",
+    "naive-ui": "^2.34.4",
+    "nuxt": "^3.6.1",
+    "pinia": "^2.1.4",
+    "typescript": "^5.1.6"
+  }
+}
