@@ -42,7 +42,7 @@ export default defineEventHandler(async (event) => {
     pt_tea: 2,
     pt_vcode: 1,
     uin,
-    appid: config.aid,
+    appid: aid,
     js_ver,
     js_type: 1,
     login_sig: pt_login_sig,

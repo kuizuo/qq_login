@@ -1,3 +1,4 @@
+import qs from 'node:querystring'
 import axios from 'axios'
 
 interface Query {
@@ -21,7 +22,33 @@ export default defineEventHandler(async (event) => {
   const pt_login_sig = cookie.match(/pt_login_sig=(.*?);/)?.[1]
   const ptdrvs = cookie.match(/ptdrvs=(.*?);/)?.[1]
 
-  const url = `https://ssl.ptlogin2.qq.com/login?u=${uin}&verifycode=${vcode}&pt_vcode_v1=${v1}&pt_verifysession_v1=${pt_verifysession}&p=${p}&pt_randsalt=2&u1=https%3A%2F%2Fqzs.qq.com%2Fqzone%2Fv5%2Floginsucc.html%3Fpara%3Dizone&ptredirect=0&h=1&t=1&g=1&from_ui=1&ptlang=2052&action=5-10-${Date.now()}487&js_ver=22030810&js_type=1&login_sig=${pt_login_sig}&pt_uistyle=40&aid=${aid}&daid=5&ptdrvs=${ptdrvs}&sid=${sid}`
+  const query = qs.stringify({
+    u: uin,
+    verifycode: vcode,
+    pt_vcode_v1: v1,
+    pt_verifysession_v1: pt_verifysession,
+    p,
+    pt_randsalt: '2',
+    u1: 'https://qzs.qq.com/qzone/v5/loginsucc.html?para=izone',
+    ptredirect: '0',
+    h: '1',
+    t: '1',
+    g: '1',
+    from_ui: '1',
+    ptlang: '2052',
+    action: `7-3-${Date.now()}`,
+    js_ver: '23061410',
+    js_type: '1',
+    login_sig: pt_login_sig,
+    pt_uistyle: '40',
+    aid,
+    daid: '5',
+    ptdrvs,
+    sid,
+    o1vId: '9be2659f037be605d1584a111c7af433',
+    pt_js_version: 'v1.45.1',
+  })
+  const url = `https://ssl.ptlogin2.qq.com/login?${query}`
 
   const { data: ret, headers } = (await axios.get(url, {
     headers: {

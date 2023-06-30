@@ -5,6 +5,10 @@ const props = defineProps<{
   qrsig: ''
   code: ''
 }>()
+
+const emit = defineEmits<{
+  (e: 'success', param: Record<string, any>): void
+}>()
 </script>
 
 <template>

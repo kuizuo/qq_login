@@ -118,7 +118,7 @@ async function checkvc(uin: string) {
 async function handleSuccess(params: { randstr: string; ticket: string }) {
   showCaptchaModal.value = false
 
-  const isMd5 = false
+  const isMd5 = null
 
   const { randstr, ticket } = params
   checkResult.value.vcode = randstr
@@ -140,8 +140,21 @@ async function handleSuccess(params: { randstr: string; ticket: string }) {
   if (res?.msg) {
     message.success(res?.msg)
     statusInfo.value = res?.msg
+    loginResult.value = res
   }
 }
+
+onMounted(() => {
+  const script = document.createElement('script')
+  script.src = '//lib.baomitu.com/jquery/1.12.4/jquery.min.js'
+
+  script.onload = () => {
+    const script1 = document.createElement('script')
+    script1.src = '/js/encryption.js'
+    document.head.appendChild(script1)
+  }
+  document.head.appendChild(script)
+})
 </script>
 
 <template>
@@ -174,18 +187,16 @@ async function handleSuccess(params: { randstr: string; ticket: string }) {
             <span>使用QQ手机版扫描二维码</span>
             <img width="200" height="200" :src="qrcodeInfo.img" alt="">
           </div>
-          <div v-if="loginResult.code === 0" class="flex flex-col justify-center items-center">
-            <p>昵称: {{ loginResult.nick }}</p>
-            <p>uin: {{ loginResult.uin }}</p>
-            <p>skey: {{ loginResult.skey }}</p>
-            <p>pskey: {{ loginResult.pskey }}</p>
-            <p>superkey: {{ loginResult.superkey }}</p>
-            <p>cookie: {{ loginResult.cookie }}</p>
-          </div>
         </n-tab-pane>
       </n-tabs>
       <n-alert v-if="statusInfo" :show-icon="false" type="info">
         {{ statusInfo }}
+      </n-alert>
+
+      <n-alert v-if="loginResult.code === 0" mt-2 class="flex flex-col justify-center items-center">
+        <p v-for="[key, value] in Object.entries(loginResult)" :key="key">
+          <span font-600> {{ key }}</span> : <span>{{ value }}</span>
+        </p>
       </n-alert>
     </n-card>
   </div>

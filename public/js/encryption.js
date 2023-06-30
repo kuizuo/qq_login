@@ -990,11 +990,12 @@ function uin2hex(str) {
   for (var arr = [], j = 0; maxLength > j; j += 2)
     arr.push(`\\x${hex.substr(j, 2)}`)
   let result = arr.join('')
-  return eval(`result="${result}"`),
+  return eval(`result="${result}"`),result
 }
 
-function encryption(u, p, code, isMd5) {
-  var p = $.Encryption.getEncryption(p, uin2hex(u), code, isMd5)
+function encryption(u, pwd, code, isMd5) {
+  const salt = uin2hex(u)
+  var p = $.Encryption.getEncryption(pwd, salt, code, isMd5)
   return p
 }
 

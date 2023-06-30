@@ -4,18 +4,6 @@ import { darkTheme, dateZhCN, lightTheme, zhCN } from 'naive-ui'
 
 const colorMode = useColorMode()
 
-onMounted(() => {
-  const script = document.createElement('script')
-  script.src = '//lib.baomitu.com/jquery/1.12.4/jquery.min.js'
-
-  script.onload = () => {
-    const script1 = document.createElement('script')
-    script1.src = '/js/encryption.js'
-    document.head.appendChild(script1)
-  }
-  document.head.appendChild(script)
-})
-
 useHead({
   title: 'qq 扫码登录',
   link: [
