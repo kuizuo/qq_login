@@ -1,6 +1,6 @@
 # qq 登录协议网页版
 
-在线体验：[qq.kuizuo.cn](https://qq.kuizuo.cn/)
+在线体验：[qq-login.vercel.app](https://qq-login.vercel.app)
 
 该项目是一个基于 Nuxt 框架实现的 qq 登录实现（而非第三方登录），提供了密码登录和扫码登录两种方式。如果需要将其移植到网页版中，可以使用本项目作为参考。
 
